@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VBoxAPI", "VBoxAPI\VBoxAPI.csproj", "{F847A4E0-8288-4901-BA1E-C5C9E0E41856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VBoxSysTray", "VBoxSystemTray\VBoxSysTray.csproj", "{F03D4B66-5281-43FB-8C92-F37AAF5110D3}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupDeploy", "SetupDeploy\SetupDeploy.vdproj", "{76E5EF6F-B053-4A85-A840-9895C9F2E11D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|x86 = CD_ROM|x86
+		Debug|x86 = Debug|x86
+		DVD-5|x86 = DVD-5|x86
+		Release|x86 = Release|x86
+		SingleImage|x86 = SingleImage|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.CD_ROM|x86.ActiveCfg = Release|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.CD_ROM|x86.Build.0 = Release|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.Debug|x86.ActiveCfg = Debug|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.Debug|x86.Build.0 = Debug|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.DVD-5|x86.ActiveCfg = Debug|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.DVD-5|x86.Build.0 = Debug|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.Release|x86.ActiveCfg = Release|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.Release|x86.Build.0 = Release|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.SingleImage|x86.ActiveCfg = Release|x86
+		{F847A4E0-8288-4901-BA1E-C5C9E0E41856}.SingleImage|x86.Build.0 = Release|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.CD_ROM|x86.ActiveCfg = Release|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.CD_ROM|x86.Build.0 = Release|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.Debug|x86.ActiveCfg = Debug|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.Debug|x86.Build.0 = Debug|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.DVD-5|x86.ActiveCfg = Debug|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.DVD-5|x86.Build.0 = Debug|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.Release|x86.ActiveCfg = Release|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.Release|x86.Build.0 = Release|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.SingleImage|x86.ActiveCfg = Release|x86
+		{F03D4B66-5281-43FB-8C92-F37AAF5110D3}.SingleImage|x86.Build.0 = Release|x86
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.CD_ROM|x86.ActiveCfg = Release
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.CD_ROM|x86.Build.0 = Release
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.Debug|x86.ActiveCfg = Debug
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.Debug|x86.Build.0 = Debug
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.DVD-5|x86.ActiveCfg = Debug
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.DVD-5|x86.Build.0 = Debug
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.Release|x86.ActiveCfg = Release
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.Release|x86.Build.0 = Release
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.SingleImage|x86.ActiveCfg = Release
+		{76E5EF6F-B053-4A85-A840-9895C9F2E11D}.SingleImage|x86.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
