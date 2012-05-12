@@ -17,16 +17,24 @@ namespace VBoxSysTray
   {
     private VirtualServerMonitor serverMonitor;
     private MenuItemImageUpdater menuItemImageUpdater = new MenuItemImageUpdater();
+    private NotifyIconBalloonService balloonService;
 
     public HiddenForm()
     {
       InitializeComponent();
+
+      InitializeServices();
 
       InitializeIcons();
 
       LocateVirtualServers();
 
       AddStaticContextMenuItems();
+    }
+
+    private void InitializeServices()
+    {
+      balloonService = new NotifyIconBalloonService(StatusIcon);
     }
 
     private void InitializeIcons()
@@ -48,12 +56,14 @@ namespace VBoxSysTray
         }
 
         RegisterForStateChanges(servers);
+
+        string status = String.Format("Managing {0} virtual {1}", servers.Count, servers.Count == 1 ? "machine" : "machines");
+        balloonService.DisplayInfo(status);
       }
       else
       {
-        //No servers found, display error on ballon tip
+        balloonService.DisplayError("No virtual machines located");
       }
-
 
     }
 
@@ -76,7 +86,6 @@ namespace VBoxSysTray
     {
       ToolStripMenuItem tsmiRoot = new ToolStripMenuItem(vServer.Name);
       tsmiRoot.Image = Resources.unknown.ToBitmap();
-      tsmiRoot.CheckOnClick = true;
 
       ToolStripMenuItem tsmiStart = new ToolStripMenuItem("Start");
       tsmiStart.Click += (obj, e) => vServer.Start();
@@ -96,27 +105,25 @@ namespace VBoxSysTray
     {
       serverMonitor = new VirtualServerMonitor(servers);
       serverMonitor.StateChanged += menuItemImageUpdater.UpdateImage;
+      serverMonitor.StateChanged += UpdateNotifyIconBalloon;
       serverMonitor.Rate = 5000;
       serverMonitor.Start();
     }
 
     
 
-    private void UpdateSystemTrayIcon(VirtualServer server, VirtualServer.State state)
+    private void UpdateNotifyIconBalloon(VirtualServer server, VirtualServer.State state)
     {
       switch (state)
       {
         case VirtualServer.State.Unknown:
-          StatusIcon.Icon = Resources.unknown;
-          StatusIcon.Text = String.Format("{0} unknown", server.Name);
+          balloonService.DisplayWarning(String.Format("{0} is in an uknown state", server.Name));
           break;
         case VirtualServer.State.Poweroff:
-          StatusIcon.Icon = Resources.poweroff;
-          StatusIcon.Text = String.Format("{0} poweroff", server.Name);
+          balloonService.DisplayInfo(String.Format("{0} has been powered off", server.Name));
           break;
         case VirtualServer.State.Running:
-          StatusIcon.Icon = Resources.running;
-          StatusIcon.Text = String.Format("{0} running", server.Name);
+          balloonService.DisplayInfo(String.Format("{0} is running", server.Name));
           break;
         default:
           break;
