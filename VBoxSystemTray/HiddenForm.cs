@@ -16,7 +16,7 @@ namespace VBoxSysTray
   public partial class HiddenForm : Form
   {
     private VirtualServerMonitor serverMonitor;
-    private MenuItemImageUpdater menuItemImageUpdater = new MenuItemImageUpdater();
+    private MenuItemImageUpdater menuItemImageUpdater;
     private NotifyIconBalloonService balloonService;
 
     public HiddenForm()
@@ -34,6 +34,7 @@ namespace VBoxSysTray
 
     private void InitializeServices()
     {
+      menuItemImageUpdater = new MenuItemImageUpdater();
       balloonService = new NotifyIconBalloonService(StatusIcon);
     }
 
