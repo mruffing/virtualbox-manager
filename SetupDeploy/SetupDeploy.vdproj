@@ -15,26 +15,26 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_4570E1DF6E463A9A57913204AC2CF7DB"
+        "OwnerKey" = "8:_76015CA4A6444160BD66DECB1E1EFA24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_76015CA4A6444160BD66DECB1E1EFA24"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E3685731771E7B46054F782E326D32A2"
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_76015CA4A6444160BD66DECB1E1EFA24"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E3685731771E7B46054F782E326D32A2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_76015CA4A6444160BD66DECB1E1EFA24"
+        "OwnerKey" = "8:_4570E1DF6E463A9A57913204AC2CF7DB"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -55,6 +55,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -71,6 +92,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -100,14 +129,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E3685731771E7B46054F782E326D32A2"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4570E1DF6E463A9A57913204AC2CF7DB"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:VBoxAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_E3685731771E7B46054F782E326D32A2"
+                    "_4570E1DF6E463A9A57913204AC2CF7DB"
                     {
                     "Name" = "8:VBoxAPI.dll"
                     "Attributes" = "3:512"
@@ -197,22 +226,22 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:VBoxSysTray"
+        "ProductName" = "8:VirtualBox Manager"
         "ProductCode" = "8:{31D185D5-41E2-47B2-9E0C-236A2DA743D5}"
-        "PackageCode" = "8:{064BC387-8C07-4674-B54B-38F3FB31A68B}"
+        "PackageCode" = "8:{62185E4B-72FB-44F3-8FDB-D48C6D299B7E}"
         "UpgradeCode" = "8:{ABACFE33-7038-448C-9838-D119756F1CB2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:RuffingInc"
+        "Manufacturer" = "8:VirtualBox Manager @ GitHub"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:VBoxSysTray"
+        "Title" = "8:"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:RuffingInc"
+        "ARPCONTACT" = "8:"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -734,7 +763,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_76015CA4A6444160BD66DECB1E1EFA24"
             {
-            "SourcePath" = "8:..\\VBoxSystemTray\\obj\\x86\\Release\\VBoxSysTray.exe"
+            "SourcePath" = "8:..\\VBoxSystemTray\\obj\\x86\\Debug\\VBoxSysTray.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_415BDCE582E0443CAE08E675A3F5A266"
