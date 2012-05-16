@@ -45,7 +45,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\VBoxSysTrayInstaller.msi"
+        "OutputFilename" = "8:Debug\\VirtualBoxManagerInstaller.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -82,7 +82,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\VBoxSysTrayInstaller.msi"
+        "OutputFilename" = "8:Release\\VirtualBoxManagerInstaller.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -99,6 +99,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -200,7 +213,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_7DEE831C5585495C90A4BED044ABDAAA"
                     {
-                    "Name" = "8:VBoxSysTray"
+                    "Name" = "8:VirtualBox Manager"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -228,7 +241,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VirtualBox Manager"
         "ProductCode" = "8:{31D185D5-41E2-47B2-9E0C-236A2DA743D5}"
-        "PackageCode" = "8:{62185E4B-72FB-44F3-8FDB-D48C6D299B7E}"
+        "PackageCode" = "8:{03C27541-B87A-4AC7-836C-66AF6A6BA905}"
         "UpgradeCode" = "8:{ABACFE33-7038-448C-9838-D119756F1CB2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -350,7 +363,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5845780E93C149788EB7A4326DD61A98"
             {
-            "Name" = "8:VBoxSysTray"
+            "Name" = "8:VirtualBox Manager"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -763,7 +776,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_76015CA4A6444160BD66DECB1E1EFA24"
             {
-            "SourcePath" = "8:..\\VBoxSystemTray\\obj\\x86\\Debug\\VBoxSysTray.exe"
+            "SourcePath" = "8:..\\VBoxSystemTray\\obj\\x86\\Release\\VBoxSysTray.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_415BDCE582E0443CAE08E675A3F5A266"

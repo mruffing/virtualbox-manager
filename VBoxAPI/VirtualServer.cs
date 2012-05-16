@@ -35,7 +35,7 @@ namespace VBoxAPI
       p.StartInfo.RedirectStandardOutput = true;
       p.StartInfo.CreateNoWindow = true;
       p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      p.StartInfo.FileName = @"C:\Program Files\Oracle\VirtualBox\VBoxHeadless.exe";
+      p.StartInfo.FileName = VBoxPaths.Oracle_VirtualBox_VBoxHeadless_Exe;
       p.StartInfo.Arguments = String.Format("--startvm \"{0}\"", serverName);
     
       p.Start();
@@ -53,7 +53,7 @@ namespace VBoxAPI
       p.StartInfo.RedirectStandardError = true;
       p.StartInfo.CreateNoWindow = true;
       p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      p.StartInfo.FileName = @"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe";
+      p.StartInfo.FileName = VBoxPaths.Oracle_VirtualBox_VBoxManage_Exe;
       p.StartInfo.Arguments = String.Format("controlvm \"{0}\" acpipowerbutton", serverName);
       p.Start();
       p.WaitForExit();
@@ -90,7 +90,7 @@ namespace VBoxAPI
       p.StartInfo.RedirectStandardOutput = true;
       p.StartInfo.CreateNoWindow = true;
       p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      p.StartInfo.FileName = @"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe";
+      p.StartInfo.FileName = VBoxPaths.Oracle_VirtualBox_VBoxManage_Exe;
       p.StartInfo.Arguments = String.Format("showvminfo \"{0}\" --machinereadable", serverName);
       p.Start();
 

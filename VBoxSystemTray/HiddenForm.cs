@@ -98,8 +98,9 @@ namespace VBoxSysTray
 
       cmsVirtualServer.Items.Add(tsmiRoot);
 
+      //Register and initialize the menu items
       menuItemImageUpdater.Register(tsmiRoot, vServer);
-
+      menuItemImageUpdater.UpdateImage(vServer, vServer.Status);
     }
 
     private void RegisterForStateChanges(IEnumerable<VirtualServer> servers)

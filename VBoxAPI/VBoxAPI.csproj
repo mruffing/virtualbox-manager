@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VBoxPaths.cs" />
     <Compile Include="VBoxService.cs" />
     <Compile Include="VirtualServer.cs" />
     <Compile Include="VirtualServerMonitor.cs" />

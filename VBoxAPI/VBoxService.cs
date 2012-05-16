@@ -32,8 +32,8 @@ namespace VBoxAPI
 
         Process p = new Process();
 
-        p.StartInfo.WorkingDirectory = @"C:\Program Files\Oracle\VirtualBox\";
-        p.StartInfo.FileName = @"C:\Program Files\Oracle\VirtualBox\VirtualBox.exe";
+        p.StartInfo.WorkingDirectory = VBoxPaths.Oracle_VirtualBox_Directory;
+        p.StartInfo.FileName = VBoxPaths.Oracle_VirutalBox_Exe;
         p.Start();
       }
     }
@@ -47,7 +47,7 @@ namespace VBoxAPI
       p.StartInfo.RedirectStandardOutput = true;
       p.StartInfo.CreateNoWindow = true;
       p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      p.StartInfo.FileName = @"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe";
+      p.StartInfo.FileName = VBoxPaths.Oracle_VirtualBox_VBoxManage_Exe;
       p.StartInfo.Arguments = @"list vms";
       p.Start();
 
