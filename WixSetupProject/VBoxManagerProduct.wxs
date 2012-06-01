@@ -27,7 +27,7 @@
                      Guid="2D2FE830-7D35-4260-8C36-029072896B70">
 
         <File Id="FILE_VBoxAPIDLL"
-              Source="..\VBoxSystemTray\bin\Debug\VBoxAPI.dll"
+              Source="..\VBoxSystemTray\bin\Release\VBoxAPI.dll"
               KeyPath="yes"/>
 
       </Component>
@@ -36,7 +36,7 @@
                  Guid="76E1CA11-BD15-4C98-B751-9060CBADB8F1">
 
         <File Id="FILE_VBoxSysTrayEXE"
-              Source="..\VBoxSystemTray\bin\Debug\VBoxSysTray.exe"
+              Source="..\VBoxSystemTray\bin\Release\VBoxSysTray.exe"
               KeyPath="yes" />
 
 
