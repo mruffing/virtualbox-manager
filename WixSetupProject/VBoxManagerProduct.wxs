@@ -51,11 +51,15 @@
                   Name="VirtualBox Manager"
                   Description="Start VirtualBox Manager"
                   Target="[InstallLocation]VBoxSysTray.exe"/>
+        <Shortcut Id="UninstallShortcut"
+                  Name="Uninstall VirtualBox Manager"
+                  Target="[System64Folder]msiexec.exe"
+                  Arguments="/x [ProductCode]"/>
         
         <RemoveFolder Id="RemoveVBoxSysTrayEXEShortcut" On="uninstall"/>
         
         <RegistryValue Root="HKCU"
-                       Key="Software\Microsoft\AwesomeSoftware"
+                       Key="Software\VirtualBox Manager"
                        Name="installed"
                        Type="integer"
                        Value="1"
@@ -70,6 +74,8 @@
       <ComponentRef Id="CMP_VBoxSysTrayEXE"/>
       <ComponentRef Id="CMP_VBoxSysTrayEXEShortcut"/>
     </Feature>
-    
+
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <UIRef Id="WixUI_Minimal"/>    
 	</Product>
 </Wix>
