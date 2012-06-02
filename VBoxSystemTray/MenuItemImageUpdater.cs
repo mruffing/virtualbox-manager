@@ -6,46 +6,42 @@ using System.Windows.Forms;
 using VBoxAPI;
 using System.Drawing;
 using VBoxSysTray.Properties;
+using System.ComponentModel;
 
 namespace VBoxSysTray
 {
-  public class MenuItemImageUpdater
+  public class MenuItemMapper
   {
-    private Dictionary<VirtualServer, ToolStripMenuItem> mapping = new Dictionary<VirtualServer, ToolStripMenuItem>();
+    private Dictionary<VirtualServer, MenuItemPresenter> mapping = new Dictionary<VirtualServer, MenuItemPresenter>();
+    private Action<VirtualServer, VirtualServer.State> updateWithoutThreadChecksAction;
+    private ISynchronizeInvoke dispatcher;
 
-    private static readonly Bitmap unknown = Resources.unknown.ToBitmap();
-    private static readonly Bitmap poweroff = Resources.poweroff.ToBitmap();
-    private static readonly Bitmap running = Resources.running.ToBitmap();
-
-    public void Register(ToolStripMenuItem tsmi, VirtualServer vServer)
+    public MenuItemMapper(ISynchronizeInvoke dispatcher)
     {
-      mapping.Add(vServer, tsmi);
+      this.dispatcher = dispatcher;
+      this.updateWithoutThreadChecksAction = UpdateWithoutThreadChecks;
     }
 
-    public ToolStripMenuItem Get(VirtualServer vServer)
+    public void Register(MenuItemPresenter vServerMenuItem)
     {
-      return mapping[vServer];
+      mapping.Add(vServerMenuItem.VirtualServer, vServerMenuItem);
     }
 
-    public void UpdateImage(VirtualServer vServer, VirtualServer.State state)
+    public void Update(VirtualServer vServer, VirtualServer.State state)
     {
-      ToolStripMenuItem tsmi = mapping[vServer];
-
-      switch (state)
+      if (dispatcher.InvokeRequired)
       {
-        case VirtualServer.State.Unknown:
-          tsmi.Image = unknown;
-          break;
-        case VirtualServer.State.Poweroff:
-          tsmi.Image = poweroff;
-          break;
-        case VirtualServer.State.Running:
-          tsmi.Image = running;
-          break;
-        default:
-          break;
+        dispatcher.Invoke(updateWithoutThreadChecksAction, new object[] { vServer, state });
       }
+      else
+      {
+        UpdateWithoutThreadChecks(vServer, state);
+      }
+    }
 
+    private void UpdateWithoutThreadChecks(VirtualServer vServer, VirtualServer.State state)
+    {
+      mapping[vServer].Update(state);
     }
   }
 }

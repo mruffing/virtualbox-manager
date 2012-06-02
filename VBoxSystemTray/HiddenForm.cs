@@ -16,7 +16,7 @@ namespace VBoxSysTray
   public partial class HiddenForm : Form
   {
     private VirtualServerMonitor serverMonitor;
-    private MenuItemImageUpdater menuItemImageUpdater;
+    private MenuItemMapper menuItemMapper;
     private NotifyIconBalloonService balloonService;
 
     public HiddenForm()
@@ -34,7 +34,7 @@ namespace VBoxSysTray
 
     private void InitializeServices()
     {
-      menuItemImageUpdater = new MenuItemImageUpdater();
+      menuItemMapper = new MenuItemMapper(cmsVirtualServer);
       balloonService = new NotifyIconBalloonService(StatusIcon);
     }
 
@@ -85,28 +85,20 @@ namespace VBoxSysTray
 
     private void AddVirtualServerContextMenuItems(VirtualServer vServer)
     {
-      ToolStripMenuItem tsmiRoot = new ToolStripMenuItem(vServer.Name);
-      tsmiRoot.Image = Resources.unknown.ToBitmap();
+      //Create a virtual server menu item
+      MenuItemPresenter vServerMenuItem = new MenuItemPresenter(vServer);
 
-      ToolStripMenuItem tsmiStart = new ToolStripMenuItem("Start");
-      tsmiStart.Click += (obj, e) => vServer.Start();
-      tsmiRoot.DropDownItems.Add(tsmiStart);
+      //Add to the context menu
+      cmsVirtualServer.Items.Add(vServerMenuItem.RootMenuItem);
 
-      ToolStripMenuItem tsmiStop = new ToolStripMenuItem("Stop");
-      tsmiStop.Click += (obje, e) => vServer.Stop();
-      tsmiRoot.DropDownItems.Add(tsmiStop);
-
-      cmsVirtualServer.Items.Add(tsmiRoot);
-
-      //Register and initialize the menu items
-      menuItemImageUpdater.Register(tsmiRoot, vServer);
-      menuItemImageUpdater.UpdateImage(vServer, vServer.Status);
+      //Register the menu item
+      menuItemMapper.Register(vServerMenuItem);
     }
 
     private void RegisterForStateChanges(IEnumerable<VirtualServer> servers)
     {
       serverMonitor = new VirtualServerMonitor(servers);
-      serverMonitor.StateChanged += menuItemImageUpdater.UpdateImage;
+      serverMonitor.StateChanged += menuItemMapper.Update;
       serverMonitor.StateChanged += UpdateNotifyIconBalloon;
       serverMonitor.Rate = 5000;
       serverMonitor.Start();
