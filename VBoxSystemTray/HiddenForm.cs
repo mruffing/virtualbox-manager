@@ -15,7 +15,8 @@ namespace VBoxSysTray
 {
   public partial class HiddenForm : Form
   {
-    private static readonly string AboutBoxText = String.Format("{0}\nVersion: {1}\n", "VirtualBox Manager", "0.1.0.0");
+    private static readonly string AboutBoxText = String.Format("{0}\n\nVersion: {1}", "VirtualBox Manager is a system tray based application for managing headless virtual machines.", "0.1.0.0");
+    private static readonly string AboutBoxCaptionText = "About - VirtualBox Manager 0.1.0.0";
     private VirtualServerMonitor serverMonitor;
     private MenuItemMapper menuItemMapper;
     private NotifyIconBalloonService balloonService;
@@ -78,7 +79,7 @@ namespace VBoxSysTray
       cmsVirtualServer.Items.Add(tsmiVirtualBoxGui);
 
       ToolStripMenuItem tsmiAbout = new ToolStripMenuItem("About");
-      tsmiAbout.Click += (obj, e) => MessageBox.Show(AboutBoxText);
+      tsmiAbout.Click += (obj, e) => MessageBox.Show(AboutBoxText, AboutBoxCaptionText);
       cmsVirtualServer.Items.Add(tsmiAbout);
 
       cmsVirtualServer.Items.Add(new ToolStripSeparator());
