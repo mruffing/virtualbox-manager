@@ -55,7 +55,7 @@
     <Compile Include="NotifyIconBalloonService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MenuItemImageUpdater.cs" />
+    <Compile Include="MenuItemMapper.cs" />
     <Compile Include="ResourceCache.cs" />
     <Compile Include="MenuItemPresenter.cs" />
     <EmbeddedResource Include="HiddenForm.resx">
