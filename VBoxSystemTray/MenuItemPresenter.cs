@@ -16,6 +16,7 @@ namespace VBoxSysTray
 
     private VirtualServer.State vServerState;
     private ToolStripMenuItem tsmiOnOff;
+    private ToolStripMenuItem tsmiRDP;
     
 
     public ToolStripMenuItem RootMenuItem
@@ -53,6 +54,13 @@ namespace VBoxSysTray
       tsmiOnOff = new ToolStripMenuItem();
       tsmiOnOff.Click += TsmiOnOffClickEvent;
       RootMenuItem.DropDownItems.Add(tsmiOnOff);
+
+      if (VirtualServer.VRDEProperty.IsEnabled)
+      {
+        tsmiRDP = new ToolStripMenuItem("RDP Connect");
+        tsmiRDP.Click += (obj, e) => MstscService.Connect("localhost", VirtualServer.VRDEProperty.Port, 1024, 700);
+        RootMenuItem.DropDownItems.Add(tsmiRDP);
+      }
     }
 
     private void UpdateRootMenuImage()

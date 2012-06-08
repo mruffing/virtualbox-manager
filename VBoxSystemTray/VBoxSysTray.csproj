@@ -52,6 +52,7 @@
     <Compile Include="HiddenForm.Designer.cs">
       <DependentUpon>HiddenForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MstscService.cs" />
     <Compile Include="NotifyIconBalloonService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,11 +6,23 @@ using System.Diagnostics;
 
 namespace VBoxAPI
 {
+  //TODO: Refactor towards more efficient VBoxService calls
   public class VirtualServer
   {
     public enum State { Unknown, Poweroff, Running }
 
+    public class VRDE
+    {
+      public bool IsEnabled { get; set; }
+      public int Port { get; set; }
+    }
+
     private String serverName;
+
+    public VRDE VRDEProperty
+    {
+      get { return GetVRDEStatus(); }
+    }
 
     public String Name
     {
@@ -27,39 +39,14 @@ namespace VBoxAPI
       this.serverName = serverName;
     }
 
-    public bool Start()
+    public void Start()
     {
-      Process p = new Process();
-
-      p.StartInfo.UseShellExecute = false;
-      p.StartInfo.RedirectStandardOutput = true;
-      p.StartInfo.CreateNoWindow = true;
-      p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      p.StartInfo.FileName = VBoxPaths.Oracle_VirtualBox_VBoxHeadless_Exe;
-      p.StartInfo.Arguments = String.Format("--startvm \"{0}\"", serverName);
-    
-      p.Start();
-
-      return true;
-
+      VBoxService.StartVirtualMachine(serverName);
     }
 
-    public bool Stop()
+    public void Stop()
     {
-      Process p = new Process();
-
-      p.StartInfo.UseShellExecute = false;
-      p.StartInfo.RedirectStandardOutput = true;
-      p.StartInfo.RedirectStandardError = true;
-      p.StartInfo.CreateNoWindow = true;
-      p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      p.StartInfo.FileName = VBoxPaths.Oracle_VirtualBox_VBoxManage_Exe;
-      p.StartInfo.Arguments = String.Format("controlvm \"{0}\" acpipowerbutton", serverName);
-      p.Start();
-      p.WaitForExit();
-
-      return true;
-
+      VBoxService.AcpiPowerOffVirtualMachine(serverName);
     }
 
     private State GetVirtualServerState()
@@ -81,36 +68,45 @@ namespace VBoxAPI
 
     }
 
+    private VRDE GetVRDEStatus()
+    {
+      VRDE returnValue = new VRDE() 
+      { 
+        IsEnabled = false, 
+        Port = -1 
+      };
+
+      foreach (String line in VBoxService.GetVirtualMachineInfo(serverName).Split('\n'))
+      {
+        string formattedLine = line.Trim().ToLower();
+
+        if(formattedLine.Contains("vrdeports="))
+        {
+          returnValue.Port = Int32.Parse(formattedLine.Split('"')[1]);
+          returnValue.IsEnabled = true;
+          break;
+        }
+      }
+
+      return returnValue;
+    }
+
     private string ExecuteGetStateCommand()
     {
       string serverState = "Could not find Server State for (" + serverName + ")";
-      Process p = new Process();
 
-      p.StartInfo.UseShellExecute = false;
-      p.StartInfo.RedirectStandardOutput = true;
-      p.StartInfo.CreateNoWindow = true;
-      p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      p.StartInfo.FileName = VBoxPaths.Oracle_VirtualBox_VBoxManage_Exe;
-      p.StartInfo.Arguments = String.Format("showvminfo \"{0}\" --machinereadable", serverName);
-      p.Start();
-
-      p.WaitForExit();
-
-
-      foreach (String line in p.StandardOutput.ReadToEnd().Split('\n'))
+      foreach (String line in VBoxService.GetVirtualMachineInfo(serverName).Split('\n'))
       {
-        string lineNoFormat = line.Trim().ToLower();
+        string formattedLine = line.Trim().ToLower();
 
-        if (lineNoFormat.Contains("vmstate="))
+        if (formattedLine.Contains("vmstate="))
         {
-          serverState = lineNoFormat.Split('"')[1];
+          serverState = formattedLine.Split('"')[1];
           break;
         }
       }
 
       return serverState;
-
     }
-
   }
 }
