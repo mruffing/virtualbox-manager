@@ -34,8 +34,6 @@ namespace VBoxSysTray
       p.StartInfo.FileName = "mstsc";
       p.StartInfo.Arguments = String.Format("/v:{0}:{1} /w:{2} /h:{3}", server, port, screenWidth, screenHeight);
       p.Start();
-
-      p.WaitForExit();
     }
   }
 }
