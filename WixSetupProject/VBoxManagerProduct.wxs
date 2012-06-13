@@ -1,51 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" 
-           Name="VirtualBox Manager" 
-           Language="1033" 
-           Version="0.1.0.0" 
-           Manufacturer="VirtualBox Manager @ GitHub" 
+  <Product Id="*"
+           Name="VirtualBox Manager"
+           Language="1033"
+           Version="0.1.0.0"
+           Manufacturer="VirtualBox Manager @ GitHub"
            UpgradeCode="054db882-c30a-4b62-92e6-e6ea653d268b">
-    
-		<Package InstallerVersion="200" Compressed="yes" />
 
-		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <Package InstallerVersion="200" Compressed="yes" Platform="x64" />
 
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="InstallLocation" Name="VirtualBox Manager">
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <Property Id="VIRTUALBOXVERSION">
+      <RegistrySearch Id="VirtualBoxInstallDirReg"
+                      Root="HKLM"
+                      Key="SOFTWARE\Oracle\VirtualBox"
+                      Name="InstallDir"
+                      Type="raw" Win64="yes" >
+        <DirectorySearch Id="VirtualBoxFileSearch">
+          <FileSearch Id ="VirtualBoxFileVersionSearch" Name="VirtualBox.exe" MinVersion="4.1.15"/>
+        </DirectorySearch>
+      </RegistrySearch>
+    </Property>
+
+    <Condition Message="This application requires VirtualBox 4.1.16 or greater. ">
+      Installed OR VIRTUALBOXVERSION
+    </Condition>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="InstallLocation" Name="VirtualBox Manager">
           <Directory Id="ProgramMenuFolder">
             <Directory Id="ShortcutLocation" Name="VirtualBox Manager"/>
           </Directory>
-          
-				</Directory>
-			</Directory>
-		</Directory>
+
+        </Directory>
+      </Directory>
+    </Directory>
 
     <DirectoryRef Id="InstallLocation">
       <Component Id="CMP_VBoxAPIDLL"
-                     Guid="2D2FE830-7D35-4260-8C36-029072896B70">
+                     Guid="2D2FE830-7D35-4260-8C36-029072896B70" Win64="yes">
 
-        <File Id="FILE_VBoxAPIDLL"
+        <File Id="FILE_VBoxAPIDLL" ProcessorArchitecture="x64"
               Source="..\VBoxSystemTray\bin\Release\VBoxAPI.dll"
               KeyPath="yes"/>
 
       </Component>
 
       <Component Id="CMP_VBoxSysTrayEXE"
-                 Guid="76E1CA11-BD15-4C98-B751-9060CBADB8F1">
+                 Guid="76E1CA11-BD15-4C98-B751-9060CBADB8F1" Win64="yes">
 
-        <File Id="FILE_VBoxSysTrayEXE"
+        <File Id="FILE_VBoxSysTrayEXE" ProcessorArchitecture="x64"
               Source="..\VBoxSystemTray\bin\Release\VBoxSysTray.exe"
               KeyPath="yes" />
 
 
       </Component>
     </DirectoryRef>
-    
+
     <DirectoryRef Id="ShortcutLocation">
       <Component Id="CMP_VBoxSysTrayEXEShortcut"
-                 Guid="152A570C-D23C-4366-8E84-E5B8F91E5F59">
+                 Guid="152A570C-D23C-4366-8E84-E5B8F91E5F59" Win64="yes">
 
         <Shortcut Id="VBoxSysTrayEXEShortcut"
                   Name="VirtualBox Manager"
@@ -55,18 +71,18 @@
                   Name="Uninstall VirtualBox Manager"
                   Target="[System64Folder]msiexec.exe"
                   Arguments="/x [ProductCode]"/>
-        
+
         <RemoveFolder Id="RemoveVBoxSysTrayEXEShortcut" On="uninstall"/>
-        
+
         <RegistryValue Root="HKCU"
                        Key="Software\VirtualBox Manager"
                        Name="installed"
                        Type="integer"
                        Value="1"
                        KeyPath="yes"/>
-        
+
       </Component>
-                 
+
     </DirectoryRef>
 
     <Feature Id="VirtualBoxManager" Title="VirtualBox Manager" Level="1">
@@ -76,6 +92,6 @@
     </Feature>
 
     <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
-    <UIRef Id="WixUI_Minimal"/>    
-	</Product>
+    <UIRef Id="WixUI_Minimal"/>
+  </Product>
 </Wix>
