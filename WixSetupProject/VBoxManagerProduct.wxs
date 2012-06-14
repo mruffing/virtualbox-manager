@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <Product Id="*"
            Name="VirtualBox Manager"
            Language="1033"
@@ -10,6 +11,12 @@
     <Package InstallerVersion="200" Compressed="yes" Platform="x64" />
 
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <PropertyRef Id="NETFRAMEWORK40CLIENT"/>
+
+    <Condition Message="This application requires .NET Framework 4.0 Client Profile. Please install the .NET Framework then run this installer again.">
+      Installed OR NETFRAMEWORK40CLIENT
+    </Condition>
 
     <Property Id="VIRTUALBOXVERSION">
       <RegistrySearch Id="VirtualBoxInstallDirReg"
