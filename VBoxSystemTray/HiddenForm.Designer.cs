@@ -35,7 +35,6 @@
       // 
       // StatusIcon
       // 
-      this.StatusIcon.ContextMenuStrip = this.cmsVirtualServer;
       this.StatusIcon.Visible = true;
       // 
       // cmsVirtualServer

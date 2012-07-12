@@ -32,6 +32,8 @@ namespace VBoxSysTray
       LocateVirtualServers();
 
       AddStaticContextMenuItems();
+
+      BindContextMenuToNotifyIcon();
     }
 
     private void InitializeServices()
@@ -87,6 +89,11 @@ namespace VBoxSysTray
       ToolStripMenuItem tsmiExit = new ToolStripMenuItem("Exit");
       tsmiExit.Click += (obj, e) => this.Close();
       cmsVirtualServer.Items.Add(tsmiExit);
+    }
+
+    private void BindContextMenuToNotifyIcon()
+    {
+      StatusIcon.ContextMenuStrip = cmsVirtualServer;
     }
 
     private void AddVirtualServerContextMenuItems(VirtualServer vServer)
