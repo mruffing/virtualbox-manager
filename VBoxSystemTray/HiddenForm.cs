@@ -15,8 +15,8 @@ namespace VBoxSysTray
 {
   public partial class HiddenForm : Form
   {
-    private static readonly string AboutBoxText = String.Format("{0}\n\nVersion: {1}", "VirtualBox Manager is a system tray based application for managing headless virtual machines.", "0.1.0.0");
-    private static readonly string AboutBoxCaptionText = "About - VirtualBox Manager 0.1.0.0";
+    private static readonly string AboutBoxText = String.Format("{0}\n\nVersion: {1}", "VirtualBox Manager is a system tray based application for managing headless virtual machines.", "0.2.0.0");
+    private static readonly string AboutBoxCaptionText = "About - VirtualBox Manager 0.2.0.0";
     private VirtualServerMonitor serverMonitor;
     private MenuItemMapper menuItemMapper;
     private NotifyIconBalloonService balloonService;

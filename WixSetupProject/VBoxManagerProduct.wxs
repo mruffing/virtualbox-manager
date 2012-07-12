@@ -4,7 +4,7 @@
   <Product Id="*"
            Name="VirtualBox Manager"
            Language="1033"
-           Version="0.1.0.0"
+           Version="0.2.0.0"
            Manufacturer="VirtualBox Manager @ GitHub"
            UpgradeCode="054db882-c30a-4b62-92e6-e6ea653d268b">
 
