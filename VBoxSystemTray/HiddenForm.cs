@@ -42,7 +42,7 @@ namespace VBoxSysTray
 
     private void InitializeIcons()
     {
-      StatusIcon.Icon = Resources.virtualbox; 
+      StatusIcon.Icon = Resources.virtualbox;
     }
 
     private void LocateVirtualServers()

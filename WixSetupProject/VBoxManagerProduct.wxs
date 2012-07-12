@@ -30,6 +30,10 @@
       </RegistrySearch>
     </Property>
 
+    <Icon Id="icon.ico" SourceFile="..\VBoxSystemTray\Resources\virtualbox.ico"/>
+    
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
     <Condition Message="This application requires VirtualBox 4.1.16 or greater. ">
       Installed OR VIRTUALBOXVERSION
     </Condition>
@@ -73,7 +77,8 @@
         <Shortcut Id="VBoxSysTrayEXEShortcut"
                   Name="VirtualBox Manager"
                   Description="Start VirtualBox Manager"
-                  Target="[InstallLocation]VBoxSysTray.exe"/>
+                  Target="[InstallLocation]VBoxSysTray.exe"
+                  Icon="icon.ico" />
         <Shortcut Id="UninstallShortcut"
                   Name="Uninstall VirtualBox Manager"
                   Target="[System64Folder]msiexec.exe"
@@ -100,5 +105,6 @@
 
     <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
     <UIRef Id="WixUI_Minimal"/>
+    
   </Product>
 </Wix>
